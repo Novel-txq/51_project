@@ -1,0 +1,293 @@
+C51 COMPILER V9.54   MAIN                                                                  05/22/2022 14:42:24 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keil5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.l
+                    -st) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay.h"
+   3          #include "Timer0.h"
+   4          #define speed 500   //对speed进行宏定义，这样以后想改直接在这改就行
+   5          
+   6          #define P 0     //对每个音进行定义
+   7          #define L1 1
+   8          #define L1_ 2
+   9          #define L2 3
+  10          #define L2_ 4
+  11          #define L3 5
+  12          #define L4 6
+  13          #define L4_ 7
+  14          #define L5 8
+  15          #define L5_ 9
+  16          #define L6 10
+  17          #define L6_ 11
+  18          #define L7 12
+  19          #define M1 13
+  20          #define M1_ 14
+  21          #define M2 15
+  22          #define M2_ 16
+  23          #define M3 17
+  24          #define M4 18
+  25          #define M4_ 19
+  26          #define M5 20
+  27          #define M5_ 21
+  28          #define M6 22
+  29          #define M6_ 23
+  30          #define M7 24
+  31          #define H1 25
+  32          #define H1_ 26
+  33          #define H2 27
+  34          #define H2_ 28
+  35          #define H3 29
+  36          #define H4 30
+  37          #define H4_ 31
+  38          #define H5 32
+  39          #define H5_ 33
+  40          #define H6 34
+  41          #define H6_ 35
+  42          #define H7 36
+  43          sbit Buzzer = P1^5;
+  44          unsigned char FreqSelect=0;
+  45          unsigned char MusicSelect=0;
+  46          
+  47          
+  48          unsigned char code Music[]={    //写谱子，要根据简谱在这里写
+  49            //1
+  50            P,4,
+  51            P,4,
+  52            P,4,
+  53            M6,2,
+  54            M7,2,
+C51 COMPILER V9.54   MAIN                                                                  05/22/2022 14:42:24 PAGE 2   
+
+  55            
+  56            H1,4+2,
+  57            M7,2,
+  58            H1,4,
+  59            H3,4,
+  60            
+  61            M7,4+4+4,
+  62            M3,2,
+  63            M3,2,
+  64            //2
+  65            M6,4+2,
+  66            M5,2,
+  67            M6,4,
+  68            H1,4,
+  69            
+  70            M5,4+4+4,
+  71            M3,4,
+  72            
+  73            M4,4+2,
+  74            M3,2,
+  75            M4,4,
+  76            H1,4,
+  77            
+  78            //3
+  79            M3, 4+4,
+  80            P,  2,
+  81            H1, 2,
+  82            H1, 2,
+  83            H1, 2,
+  84            
+  85            M7, 4+2,
+  86            M4_,2,
+  87            M4_,4,
+  88            M7, 4,
+  89            
+  90            M7, 8,
+  91            P,  4,
+  92            M6, 2,
+  93            M7, 2,
+  94            
+  95            //4
+  96            H1, 4+2,
+  97            M7, 2,
+  98            H1, 4,
+  99            H3, 4,
+ 100            
+ 101            M7, 4+4+4,
+ 102            M3, 2,
+ 103            M3, 2,
+ 104            
+ 105            M6, 4+2,
+ 106            M5, 2,
+ 107            M6, 4,
+ 108            H1, 4,
+ 109            
+ 110            //5
+ 111            M5, 4+4+4,
+ 112            M2, 2,
+ 113            M3, 2,
+ 114            
+ 115            M4, 4,
+ 116            H1, 2,
+C51 COMPILER V9.54   MAIN                                                                  05/22/2022 14:42:24 PAGE 3   
+
+ 117            M7, 2+2,
+ 118            H1, 2+4,
+ 119            
+ 120            H2, 2,
+ 121            H2, 2,
+ 122            H3, 2,
+ 123            H1, 2+4+4,
+ 124            
+ 125            //6
+ 126            H1, 2,
+ 127            M7, 2,
+ 128            M6, 2,
+ 129            M6, 2,
+ 130            M7, 4,
+ 131            M5_,4,
+ 132            
+ 133            
+ 134            M6, 4+4+4,
+ 135            H1, 2,
+ 136            H2, 2,
+ 137            
+ 138            H3, 4+2,
+ 139            H2, 2,
+ 140            H3, 4,
+ 141            H5, 4,
+ 142            
+ 143            //7
+ 144            H2, 4+4+4,
+ 145            M5, 2,
+ 146            M5, 2,
+ 147            
+ 148            H1, 4+2,
+ 149            M7, 2,
+ 150            H1, 4,
+ 151            H3, 4,
+ 152            
+ 153            H3, 4+4+4+4,
+ 154            
+ 155            //8
+ 156            M6, 2,
+ 157            M7, 2,
+ 158            H1, 4,
+ 159            M7, 4,
+ 160            H2, 2,
+ 161            H2, 2,
+ 162            
+ 163            H1, 4+2,
+ 164            M5, 2+4+4,
+ 165            
+ 166            H4, 4,
+ 167            H3, 4,
+ 168            H3, 4,
+ 169            H1, 4,
+ 170            
+ 171            //9
+ 172            H3, 4+4+4,
+ 173            H3, 4,
+ 174            
+ 175            H6, 4+4,
+ 176            H5, 4,
+ 177            H5, 4,
+ 178            
+C51 COMPILER V9.54   MAIN                                                                  05/22/2022 14:42:24 PAGE 4   
+
+ 179            H3, 2,
+ 180            H2, 2,
+ 181            H1, 4+4,
+ 182            P,  2,
+ 183            H1, 2,
+ 184            
+ 185            //10
+ 186            H2, 4,
+ 187            H1, 2,
+ 188            H2, 2,
+ 189            H2, 4,
+ 190            H5, 4,
+ 191            
+ 192            H3, 4+4+4,
+ 193            H3, 4,
+ 194            
+ 195            H6, 4+4,
+ 196            H5, 4+4,
+ 197            
+ 198            //11
+ 199            H3, 2,
+ 200            H2, 2,
+ 201            H1, 4+4,
+ 202            P,  2,
+ 203            H1, 2,
+ 204            
+ 205            H2, 4,
+ 206            H1, 2,
+ 207            H2, 2+4,
+ 208            M7, 4,
+ 209            
+ 210            M6, 4+4+4,
+ 211            P,  4,
+ 212            
+ 213              
+ 214          
+ 215          0xFF
+ 216          };    //
+ 217          unsigned int FreqTable[]={    
+ 218          0,63628,63731,63835,63928,64021,64103,64185,64260,
+ 219          64331,64400,64463,64528,64580,64633,64684,64732,
+ 220          64777,64820,64860,64898,64934,64968,65000,65030,
+ 221          65058,65085,65110,65134,65157,65178,65198,65217,
+ 222          65235,65252,65268,65283,};
+ 223          void main()
+ 224          {
+ 225   1        Timer0_Init();
+ 226   1        while(1)
+ 227   1        {
+ 228   2          if(Music[MusicSelect]!=0xFF)    //终止判断
+ 229   2          { 
+ 230   3            FreqSelect = Music[MusicSelect];    
+ 231   3            MusicSelect++;
+ 232   3            Delay(speed/4*Music[MusicSelect]);
+ 233   3            MusicSelect++;
+ 234   3            TR0=0;    //抬手操作
+ 235   3            Delay(5);
+ 236   3            TR0=1;
+ 237   3          }
+ 238   2          else
+ 239   2          {
+ 240   3            TR0=0;    //一直停止下去
+C51 COMPILER V9.54   MAIN                                                                  05/22/2022 14:42:24 PAGE 5   
+
+ 241   3            while(1);
+ 242   3          
+ 243   3          }
+ 244   2          
+ 245   2        
+ 246   2        }
+ 247   1      
+ 248   1      
+ 249   1      }
+ 250          void Timer0_Routine()   interrupt 1 
+ 251          {
+ 252   1        if(FreqTable[FreqSelect])   //终止符判断
+ 253   1        {
+ 254   2          TL0 = FreqTable[FreqSelect]%256;    //??????
+ 255   2          TH0 = FreqTable[FreqSelect]/256;  
+ 256   2          Buzzer=!Buzzer;
+ 257   2        }
+ 258   1      
+ 259   1        //??????
+ 260   1      
+ 261   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    101    ----
+   CONSTANT SIZE    =    241    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     76    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
