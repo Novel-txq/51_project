@@ -1,0 +1,112 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/05/2022  17:01:24  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\51\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\project PRINT (.\Listings\project.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  D:\51\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\project (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         _DATA_GROUP_
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0047H     UNIT         ?PR?MAIN?MAIN
+            CODE    004AH     0024H     UNIT         ?PR?_DELAY1MS?MAIN
+            CODE    006EH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\project (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?_DELAY1MS?MAIN
+
+?PR?_DELAY1MS?MAIN             0008H    0002H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\project (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:004AH         PUBLIC        _Delay1ms
+  C:0003H         PUBLIC        main
+  -------         PROC          _DELAY1MS
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/05/2022  17:01:24  PAGE 2
+
+
+  D:0006H         SYMBOL        s
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:0009H         SYMBOL        j
+  -------         ENDDO         
+  -------         ENDDO         
+  C:004AH         LINE#         3
+  C:004AH         LINE#         4
+  C:004AH         LINE#         5
+  C:004DH         LINE#         6
+  C:005AH         LINE#         7
+  C:005AH         LINE#         10
+  C:005DH         LINE#         11
+  C:0060H         LINE#         13
+  C:0060H         LINE#         14
+  C:0063H         LINE#         15
+  C:0066H         LINE#         16
+  C:006DH         LINE#         20
+  -------         ENDPROC       _DELAY1MS
+  -------         PROC          MAIN
+  C:0003H         LINE#         23
+  C:0003H         LINE#         24
+  C:0003H         LINE#         26
+  C:0003H         LINE#         27
+  C:0003H         LINE#         28
+  C:0006H         LINE#         29
+  C:000DH         LINE#         30
+  C:0010H         LINE#         31
+  C:0015H         LINE#         32
+  C:0018H         LINE#         33
+  C:001EH         LINE#         34
+  C:0021H         LINE#         35
+  C:0026H         LINE#         36
+  C:0029H         LINE#         37
+  C:002EH         LINE#         38
+  C:0031H         LINE#         39
+  C:0037H         LINE#         40
+  C:003AH         LINE#         41
+  C:003FH         LINE#         42
+  C:0042H         LINE#         43
+  C:0048H         LINE#         51
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=11.0 xdata=0 code=122
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
