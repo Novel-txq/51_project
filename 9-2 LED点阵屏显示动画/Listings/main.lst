@@ -1,0 +1,60 @@
+C51 COMPILER V9.54   MAIN                                                                  05/13/2022 22:09:17 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keil5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.l
+                    -st) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "Delay.h"
+   3          #include "MatrixLED.h"
+   4          
+   5          unsigned char Animation[]=
+   6          {
+   7            0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+   8            0x00,0x7C,0x10,0x10,0x10,0x7C,0x00,0x00,0x38,0x54,0x54,0x34,0x00,0x00,0x7C,0x04,
+   9            0x00,0x7C,0x04,0x00,0x38,0x44,0x44,0x38,0x00,0x00,0x7A,0x00,0x00,0x00,0x00,0x00,
+  10            0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+  11          };
+  12          
+  13          void main()
+  14          {
+  15   1        unsigned char i=0,offset=0,count = 0;
+  16   1        MatrixLED_Init();
+  17   1        while(1)
+  18   1        {
+  19   2          for(i=0;i<8;i++)//显示在屏幕上的8行8列
+  20   2          {
+  21   3            MatrixLED_ShowColumn(i,Animation[i+offset]);
+  22   3          }
+  23   2          count++;
+  24   2          if(count>10)//一个延时操作
+  25   2          {
+  26   3            count = 0;
+  27   3            offset++;
+  28   3          }
+  29   2          if(offset>40)
+  30   2          {
+  31   3            offset = 0;
+  32   3          
+  33   3          }
+  34   2        }
+  35   1      }
+  36          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     64    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     64       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
