@@ -27,7 +27,7 @@ void main()
 			
 				}
 			}
-			if(KeyNum==11)					//11号键是判断正确与否的
+			if(KeyNum==11)					//11号键是判断正确与否的 
 			{
 				if(password==1234)
 				{
@@ -47,7 +47,7 @@ void main()
 			
 			
 			}
-			if(KeyNum==12)				
+			if(KeyNum==12)			
 			{
 				password = 0;
 				count = 0;
