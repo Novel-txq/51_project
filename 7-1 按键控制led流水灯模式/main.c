@@ -11,7 +11,7 @@ void main()
 	Timer0_Init();
 	while(1)
 	{
-		KeyNumber = Key();						//ͨ��LEDMode�ı���ˮ������
+		KeyNumber = Key();						//通过LEDMode改变流水灯流向
 		if(KeyNumber)
 		{
 			if(KeyNumber==1)
@@ -36,11 +36,11 @@ void main()
 unsigned int count = 0;
 void Timer0_Routine()   interrupt 1
 {
-	TL0 = 0x18;		
+	TL0 = 0x18;		如果51芯片的频率是12MHz，那么震荡周期就是1/12M秒，而机器周期就是12×1/12M秒，就是1/1M秒，即1/1000000秒，也就是1微秒。
 	TH0 = 0xFC;		
 
 	count++;
-	if(count >= 500)	//���500ms
+	if(count >= 500)	//间隔500ms
 	{
 		count = 0;
 		if(LEDMode==0)
