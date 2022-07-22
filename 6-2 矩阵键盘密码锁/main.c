@@ -15,7 +15,7 @@ void main()
 		KeyNum = Matrixkey();
 		if(KeyNum)
 		{
-			if(count < 4)//如果输入次数小于4
+			if(count < 4)//脠莽鹿没脢盲脠毛麓脦脢媒脨隆脫脷4
 			{
 				if(KeyNum <= 10)
 				{
@@ -27,12 +27,12 @@ void main()
 			
 				}
 			}
-			if(KeyNum==11)
+			if(KeyNum==11)					//11鍙烽敭鏄垽鏂纭笌鍚︾殑
 			{
 				if(password==1234)
 				{
 					LCD_ShowString(1,10,"OK");
-					password = 0;						//清零
+					password = 0;						//脟氓脕茫
 					count = 0;
 				
 				}
@@ -47,7 +47,7 @@ void main()
 			
 			
 			}
-			if(KeyNum==12)
+			if(KeyNum==12)				
 			{
 				password = 0;
 				count = 0;
