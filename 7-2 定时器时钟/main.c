@@ -1,51 +1,50 @@
 #include <REGX52.H>
 #include "Delay.h"
-#include "Timer0.h"
 #include "LCD1602.h"
-unsigned int Sec ;				
-unsigned int Min ;
-unsigned int Hour ;
+#include "Timer0.h"
+
+unsigned char Sec=55,Min=59,Hour=23;
+
 void main()
 {
-	LCD_Init();							//LCDÒ²Òª³õÊ¼»¯
-	Timer0_Init();
-	LCD_ShowString(1,1,"CLOCK");
-	LCD_ShowString(2,3,":");				//:ÓÃ×Ö·û´®µÄĞÎÊ½
-	LCD_ShowString(2,6,":");
+	LCD_Init();
+	Timer0Init();
+	
+	LCD_ShowString(1,1,"Clock:");	//ä¸Šç”µæ˜¾ç¤ºé™æ€å­—ç¬¦ä¸²
+	LCD_ShowString(2,1,"  :  :");
+	
 	while(1)
 	{
-		LCD_ShowNum(2,1,Hour,2);
+		LCD_ShowNum(2,1,Hour,2);	//æ˜¾ç¤ºæ—¶åˆ†ç§’
 		LCD_ShowNum(2,4,Min,2);
 		LCD_ShowNum(2,7,Sec,2);
-			
-	
 	}
-
 }
 
-
-void Timer0_Routine()   interrupt 1 
+void Timer0_Routine() interrupt 1
 {
-	static unsigned int count;					//Èç¹ûÔÚ´Ë´¦¶¨ÒåSec£¬Min£¬Hour´òÓ¡³öÀ´µÄÈı¸öÊı¶¼ÊÇ0
-	TL0 = 0x18;		//??????
-	TH0 = 0xFC;		//??????
-
-	count++;
-	if(count >= 1000)
+	static unsigned int T0Count;
+	TL0 = 0x18;		//è®¾ç½®å®šæ—¶åˆå€¼
+	TH0 = 0xFC;		//è®¾ç½®å®šæ—¶åˆå€¼
+	T0Count++;
+	if(T0Count>=1000)	//å®šæ—¶å™¨åˆ†é¢‘ï¼Œ1s
 	{
-		count = 0;
-		Sec++;
-		if(Sec >= 60)
+		T0Count=0;
+		Sec++;			//1ç§’åˆ°ï¼ŒSecè‡ªå¢
+		if(Sec>=60)
 		{
-			Sec = 0;
+			Sec=0;		//60ç§’åˆ°ï¼ŒSecæ¸…0ï¼ŒMinè‡ªå¢
 			Min++;
-			if(Min >= 60)
+			if(Min>=60)
 			{
-				
-			
+				Min=0;	//60åˆ†é’Ÿåˆ°ï¼ŒMinæ¸…0ï¼ŒHourè‡ªå¢
+				Hour++;
+				if(Hour>=24)
+				{
+					Hour=0;	//24å°æ—¶åˆ°ï¼ŒHouræ¸…0
+				}
 			}
-		
 		}
 	}
-
 }
+
